@@ -1,3 +1,5 @@
+{% extends 'base.html.twig' %}
+{% block body %}
 <!doctype html>
 <html> 
 <head>
@@ -12,9 +14,10 @@
 <h1>Your lucky number is {{ number }}</h1>
 {% for i in 1..10 %}
     <div class="{{ cycle(['even', 'odd'], i) }}">
-        <b> some HTML here </b>
+        <b> some HTML here from src/AppBundle/Resources/views/lucky </b>
     </div>
 {% endfor %}
 <img src="{{ absolute_url(asset('images/apple-touch-icon.png')) }}" alt="Symfony!" />   
 </body>
 <html>
+    {% endblock %}
