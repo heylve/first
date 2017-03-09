@@ -65,8 +65,7 @@ public function requestAction(Request $request, $firstName="lucie", $lastName="t
 //            '<html><body>Lucky number: '.$number.'</body></html>'
 //        );
         return $this->render('AppBundle:lucky:number.html.twig', array(
-            'number' => $number,
-        ));
+            'number' => $number,));
 //        return $this->render('lucky/number.html.twig', array(
 //            'number' => $number,
 //        ));

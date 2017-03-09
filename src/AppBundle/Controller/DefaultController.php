@@ -11,7 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use AppBundle\Form\TaskType;
-
+use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Entity\Product;
 
 class DefaultController extends Controller
 {
@@ -67,6 +68,27 @@ class DefaultController extends Controller
         return $this->render('AppBundle:default:new.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+    
+    /**
+     * @Route("/createproduct", name="create_product")
+     */
+    public function createproductAction()
+    {
+    $product = new Product();
+    $product->setName('Keyboard');
+    $product->setPrice(19.99);
+    $product->setDescription('Ergonomic and stylish!');
+
+    $em = $this->getDoctrine()->getManager();
+
+    // tells Doctrine you want to (eventually) save the Product (no queries yet)
+    $em->persist($product);
+
+    // actually executes the queries (i.e. the INSERT query)
+    $em->flush();
+
+    return new Response('Saved new product with id '.$product->getId());
     }
     
 }
