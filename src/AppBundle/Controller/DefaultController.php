@@ -13,6 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use AppBundle\Form\TaskType;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Product;
+use AppBundle\Entity\Category;
 
 class DefaultController extends Controller
 {
@@ -75,20 +76,26 @@ class DefaultController extends Controller
      */
     public function createproductAction()
     {
-    $product = new Product();
-    $product->setName('Keyboard');
-    $product->setPrice(19.99);
-    $product->setDescription('Ergonomic and stylish!');
+      $category = new Category();
+        $category->setName('Computer Peripherals');
 
-    $em = $this->getDoctrine()->getManager();
+        $product = new Product();
+        $product->setName('Keyboard');
+        $product->setPrice(19.99);
+        $product->setDescription('Ergonomic and stylish!');
 
-    // tells Doctrine you want to (eventually) save the Product (no queries yet)
-    $em->persist($product);
+        // relate this product to the category
+        $product->setCategory($category);
 
-    // actually executes the queries (i.e. the INSERT query)
-    $em->flush();
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($category);
+        $em->persist($product);
+        $em->flush();
 
-    return new Response('Saved new product with id '.$product->getId());
+        return new Response(
+            'Saved new product with id: '.$product->getId()
+            .' and new category with id: '.$category->getId()
+        );
     }
     
     
@@ -134,7 +141,7 @@ class DefaultController extends Controller
         );
     }
 
-    $product->setName('New product name!'.date('l jS \of F Y h:i:s A'));
+    $product->setName('New product name!'.  date('l jS \of F Y h:i:s A'));
     $em->flush();
 
     return $this->redirectToRoute('homepage');
