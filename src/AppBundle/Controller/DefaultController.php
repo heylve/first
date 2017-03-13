@@ -131,6 +131,7 @@ class DefaultController extends Controller
         );
     }
    $categoryName = $product->getCategory()->getName();
+   
      return new Response(' product with id '.$product->getName()." Price".$product->getPrice()." Category ".$categoryName);
     // ... do something, like pass the $product object into a template
 }
@@ -170,5 +171,29 @@ public function showProductsAction($categoryId)
     
     // ...
 }
+
+/**
+* @Route("/sendmail/{name}", name="sendmail_to_nom")
+*/
+public function sendemail($name)
+{
+     $message = \Swift_Message::newInstance()
+        ->setSubject('Hello Email')
+        ->setFrom('send@example.com')
+        ->setTo('luc_vallet@hotmail.com')
+        ->setBody(
+            $this->renderView(
+                // app/Resources/views/Emails/registration.html.twig
+                    'AppBundle:default:registration.html.twig',
+                array('name' => $name)
+            ),
+            'text/html'
+        );
+        $this->get('mailer')->send($message);
+
+     return new Response('<body> email sent with id </body>');
+    
+}
+
 
     }
