@@ -91,4 +91,53 @@ class DefaultController extends Controller
     return new Response('Saved new product with id '.$product->getId());
     }
     
+    
+    /**
+     * @Route("/showproduct/{productId}", name="show_product")
+     */
+    public function showAction($productId)
+{
+    $product = $this->getDoctrine()
+        ->getRepository('AppBundle:Product')
+        ->find($productId);
+    
+    $repository = $this->getDoctrine()->getRepository('AppBundle:Product');
+    // dynamic method names to find a single product based on a column value
+    $product = $repository->findOneById($productId);
+    $product = $repository->findOneByName('Keyboard');
+
+    // dynamic method names to find a group of products based on a column value
+    $products = $repository->findByPrice(19.99);
+
+    // find *all* products
+    $products = $repository->findAll();
+    
+    if (!$product) {
+        throw $this->createNotFoundException(
+            'No product found for id '.$productId
+        );
+    }
+     return new Response(' product with id '.$product->getName()." Price".$product->getPrice());
+    // ... do something, like pass the $product object into a template
 }
+    /**
+     * @Route("/updateproduct/{productId}", name="upate_product")
+     */
+    public function updateAction($productId)
+{
+    $em = $this->getDoctrine()->getManager();
+    $product = $em->getRepository('AppBundle:Product')->find($productId);
+
+    if (!$product) {
+        throw $this->createNotFoundException(
+            'No product found for id '.$productId
+        );
+    }
+
+    $product->setName('New product name!'.date('l jS \of F Y h:i:s A'));
+    $em->flush();
+
+    return $this->redirectToRoute('homepage');
+}
+    
+    }
