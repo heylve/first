@@ -14,6 +14,7 @@ use AppBundle\Form\TaskType;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Product;
 use AppBundle\Entity\Category;
+use AppBundle\Repository\ProductRepository;
 
 class DefaultController extends Controller
 {
@@ -104,27 +105,33 @@ class DefaultController extends Controller
      */
     public function showAction($productId)
 {
-    $product = $this->getDoctrine()
-        ->getRepository('AppBundle:Product')
-        ->find($productId);
-    
-    $repository = $this->getDoctrine()->getRepository('AppBundle:Product');
+//    $product = $this->getDoctrine()
+//        ->getRepository('AppBundle:Product')
+//        ->find($productId);
+//    
+    //$repository = $this->getDoctrine()->getRepository('AppBundle:Product');
     // dynamic method names to find a single product based on a column value
-    $product = $repository->findOneById($productId);
-    $product = $repository->findOneByName('Keyboard');
+    //$product = $repository->findOneById($productId);
+    //$product = $repository->findOneByName('Keyboard');
 
     // dynamic method names to find a group of products based on a column value
-    $products = $repository->findByPrice(19.99);
+    //$products = $repository->findByPrice(19.99);
+    $product = $this->getDoctrine()
+        ->getRepository('AppBundle:Product')
+        ->findOneByIdJoinedToCategory($productId);
+
+    $category = $product->getCategory();
 
     // find *all* products
-    $products = $repository->findAll();
-    
+  //  $products = $repository->findAll();
+   // $product = $repository->findOneById($productId);
     if (!$product) {
         throw $this->createNotFoundException(
             'No product found for id '.$productId
         );
     }
-     return new Response(' product with id '.$product->getName()." Price".$product->getPrice());
+   $categoryName = $product->getCategory()->getName();
+     return new Response(' product with id '.$product->getName()." Price".$product->getPrice()." Category ".$categoryName);
     // ... do something, like pass the $product object into a template
 }
     /**
@@ -147,4 +154,21 @@ class DefaultController extends Controller
     return $this->redirectToRoute('homepage');
 }
     
+/**
+* @Route("/showproducts/{categoryId}", name="show_products")
+*/
+public function showProductsAction($categoryId)
+{
+    $category = $this->getDoctrine()
+        ->getRepository('AppBundle:Category')
+        ->find($categoryId);
+
+    $products = $category->getProducts();
+    dump(get_class($category));
+    //die();
+      return new Response('<body> product with id '.dump($products).'</body>');
+    
+    // ...
+}
+
     }
