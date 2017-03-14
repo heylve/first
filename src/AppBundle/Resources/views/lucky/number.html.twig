@@ -7,17 +7,27 @@
             <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
         {% endblock %}
 </head>
-<body>
+<body  onload="call_draw()">
      {% block javascripts %}
             <script src="{{ asset('js/main.js') }}"></script>
         {% endblock %}
 <h1>Your lucky number is {{ number }}</h1>
+<canvas id="dessin" width="640" height="180"> 
+    votre nav supporte pas le canvas
+</canvas>
+<canvas id="canvas" width="600" height="420"> 
+    votre nav supporte pas le canvas
+</canvas>
+<div id="compositingSelect">
+</div>
 {% for i in 1..10 %}
     <div class="{{ cycle(['even', 'odd'], i) }}">
         <b> some HTML here from src/AppBundle/Resources/views/lucky </b>
     </div>
 {% endfor %}
-<img src="{{ absolute_url(asset('images/apple-touch-icon.png')) }}" alt="Symfony!" />   
+<img src="{{ absolute_url(asset('images/apple-touch-icon.png')) }}" alt="Symfony!" /> 
+
+
 </body>
 <html>
     {% endblock %}

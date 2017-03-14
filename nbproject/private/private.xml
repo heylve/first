@@ -5,13 +5,13 @@
         <group>
             <file>file:/D:/devel/test_proj/first/src/AppBundle/Entity/Product.php</file>
             <file>file:/D:/devel/test_proj/first/src/AppBundle/Entity/Task.php</file>
-            <file>file:/D:/devel/test_proj/first/src/AppBundle/Resources/views/default/new.html.twig</file>
-            <file>file:/D:/devel/test_proj/first/src/AppBundle/Form/TaskType.php</file>
             <file>file:/D:/devel/test_proj/first/app/config/config.yml</file>
             <file>file:/D:/devel/test_proj/first/src/AppBundle/Controller/DefaultController.php</file>
             <file>file:/D:/devel/test_proj/first/src/AppBundle/Controller/LuckyController.php</file>
-            <file>file:/D:/devel/test_proj/first/app/config/parameters.yml</file>
-            <file>file:/D:/devel/test_proj/first/app/Resources/views/lucky/number.html.twig</file>
+            <file>file:/D:/devel/test_proj/first/app/config/services.yml</file>
+            <file>file:/D:/devel/test_proj/first/src/AppBundle/Entity/Category.php</file>
+            <file>file:/D:/devel/test_proj/first/app/config/config_dev.yml</file>
+            <file>file:/D:/devel/test_proj/first/src/AppBundle/Resources/views/default/registration.html.twig</file>
         </group>
     </open-files>
 </project-private>
