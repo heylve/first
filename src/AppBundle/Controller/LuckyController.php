@@ -60,7 +60,6 @@ public function requestAction(Request $request, $firstName="lucie", $lastName="t
     {
         
         $number = mt_rand(0, $max);
-            
 //        return new Response(
 //            '<html><body>Lucky number: '.$number.'</body></html>'
 //        );
