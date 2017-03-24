@@ -6,6 +6,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class LuckyController extends Controller
 
@@ -69,5 +72,25 @@ public function requestAction(Request $request, $firstName="lucie", $lastName="t
 //            'number' => $number,
 //        ));
     }
+    
+     /**
+     * @Route("/lucky/form", name="form")
+     */
+    public function formAction()
+    {
+     $formulaireBuilder = $this->createFormBuilder();   
+     $formulaireBuilder->add('nom',TextType::class)
+		  ->add('prenom',TextType::class)
+		  ->add('dateentree', DateType::class)
+		  ->add('enregistrer',SubmitType::class,array('label' => 'Enregistrer agent'));
+    $formResult = $formulaireBuilder->getForm();
+    
+    return $this->render('AppBundle:lucky:formulaire.html.twig',array('formulaire_agent' => $formResult->createView()));
+
+
+        
+        
+    }
+    
 }
 
