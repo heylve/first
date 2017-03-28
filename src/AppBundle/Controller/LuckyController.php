@@ -55,6 +55,19 @@ public function requestAction(Request $request, $firstName="lucie", $lastName="t
         );
 
 }
+/**
+     * @Route("/lucky/calendar", name="calendar")
+     */
+public function calendarAction(Request $request, $month=3, $year=2017)
+{
+    
+
+     return $this->render('AppBundle:lucky:calendar.html.twig', array(
+            'month' => $month,'year' => $year));
+    
+}
+
+
     
     /**
      * @Route("/lucky/number/{max}", name="lucky")
@@ -66,6 +79,7 @@ public function requestAction(Request $request, $firstName="lucie", $lastName="t
 //        return new Response(
 //            '<html><body>Lucky number: '.$number.'</body></html>'
 //        );
+        $date = time();
         return $this->render('AppBundle:lucky:number.html.twig', array(
             'number' => $number,));
 //        return $this->render('lucky/number.html.twig', array(
