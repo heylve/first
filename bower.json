@@ -1,0 +1,21 @@
+{
+  "name": "heylve",
+  "homepage": "https://github.com/heylve/first",
+  "authors": [
+    "l.vallet <luc.vallet@cpam-loireatlantique.cnamts.fr>"
+  ],
+  "description": "app",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

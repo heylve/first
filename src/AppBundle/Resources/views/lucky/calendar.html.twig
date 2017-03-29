@@ -1,5 +1,8 @@
-{# empty Twig template #}
-<table>
+{% extends 'base.html.twig' %}
+{% block title %}My cool app{% endblock %}
+
+{% block body %}
+<table class="table table-striped">
 		<thead>
 			<tr>
 				<th colspan="7" class="center">
@@ -47,3 +50,4 @@
 			</tr>
 		</tbody>
 </table>
+                        {% endblock %}

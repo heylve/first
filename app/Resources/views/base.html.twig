@@ -1,16 +1,23 @@
+
 {# app/Resources/views/base.html.twig #}
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Test Application{% endblock %}</title>
+       <link rel="stylesheet"
+            href="{{ asset('css/bootstrap.min.css') }}">
+       
+        
     </head>
+    
     <body>
         <div id="sidebar">
             {% block sidebar %}
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/lucky/number">lucky number</a></li>
+                    <li><a href="/lucky/calendar">calendrier</a></li>
                 </ul>
             {% endblock %}
         </div>
