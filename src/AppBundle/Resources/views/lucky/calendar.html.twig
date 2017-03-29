@@ -2,13 +2,31 @@
 {% block title %}My cool app{% endblock %}
 
 {% block body %}
+
+  <div class="row">         
+
+<div class="col-md-3"><a href="/lucky/calendar"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>  PREVIOUS MONTH </a></div>
+<div class="col-md-3"><a href="/">Current month <span class="glyphicon glyphicon-home" aria-hidden="true"></span> </a></div>
+<div class="col-md-3"><a href="/lucky/number"> NEXT MONTH <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></div>
+    
+    
+
+
+  </div>
+           
+
 <table class="table table-striped">
 		<thead>
 			<tr>
 				<th colspan="7" class="center">
-					{{"now"|date("m/d/Y")}}
+                                    Mois {{ month }}- Annee{{ year}} - Day {{day}}
+                                    
+                                    {{"now"|date("m/d/Y")}}
 				</th>
 			</tr>
+                        <tr>
+{#                            date from param : {{ a }}#}
+                        </tr>
 			<tr>
 				<th width="12%">Sunday</th>
 				<th width="15%">Monday</th>
@@ -33,6 +51,7 @@
 						<div>{{ day }}</div>
 						<div>
 						 {# day content here #}
+                                                  {{ include('AppBundle:lucky:day.html.twig', { 'day': day }) }}
 						</div>
 					</div>
 				</td>

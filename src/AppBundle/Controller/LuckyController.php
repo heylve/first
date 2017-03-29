@@ -56,15 +56,25 @@ public function requestAction(Request $request, $firstName="lucie", $lastName="t
 
 }
 /**
-     * @Route("/lucky/calendar", name="calendar")
+     * @Route("/lucky/calendar/{month}/{year}", name="calendar")
      */
-public function calendarAction(Request $request, $month=3, $year=2017)
+public function calendarAction($month=3, $year=2017,$day=1)
 {
     
 
+$d1=strtotime("{$month} {$year}");
+//   $c=date('d/m/Y',$c);
      return $this->render('AppBundle:lucky:calendar.html.twig', array(
-            'month' => $month,'year' => $year));
+            'month' => $month,'year' => $year,'day' => $day));
     
+
+     //   $d=strtotime("10:30pm April 15 2014");
+//   $c = strtotime('now + 3 months');
+//   $year = date('Y', strtotime($year));
+//$mon = date('m', strtotime($month));
+//$day = date('d', strtotime("1"));
+     
+     
 }
 
 
