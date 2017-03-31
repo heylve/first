@@ -64,8 +64,10 @@ public function calendarAction($month=3, $year=2017,$day=1)
 
 $d1=strtotime("{$month} {$year}");
 //   $c=date('d/m/Y',$c);
+$date="1/{$month}/{$year}";
+$nb_days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
      return $this->render('AppBundle:lucky:calendar.html.twig', array(
-            'month' => $month,'year' => $year,'day' => $day));
+            'month' => $month,'year' => $year,'nb_days' => $nb_days,'date_asked' => $date));
     
 
      //   $d=strtotime("10:30pm April 15 2014");

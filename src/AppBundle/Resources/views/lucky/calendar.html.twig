@@ -3,29 +3,24 @@
 
 {% block body %}
 
-  <div class="row">         
-
-<div class="col-md-3"><a href="/lucky/calendar"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>  PREVIOUS MONTH </a></div>
-<div class="col-md-3"><a href="/">Current month <span class="glyphicon glyphicon-home" aria-hidden="true"></span> </a></div>
-<div class="col-md-3"><a href="/lucky/number"> NEXT MONTH <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></div>
-    
-    
-
-
-  </div>
+ <div class="row">         
+    <div class="col-md-3"><a href="/lucky/calendar"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>  PREVIOUS MONTH </a></div>
+    <div class="col-md-3"><a href="/">Current month <span class="glyphicon glyphicon-home" aria-hidden="true"></span> </a></div>
+    <div class="col-md-3"><a href="/lucky/number"> NEXT MONTH <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></div>
+ </div>
            
 
 <table class="table table-striped">
 		<thead>
 			<tr>
 				<th colspan="7" class="center">
-                                    Mois {{ month }}- Annee{{ year}} - Day {{day}}
+{#                                    Mois {{ month }}- Annee{{ year}} - Day {{day}}#}
                                     
-                                    {{"now"|date("m/d/Y")}}
+{#                                    {{date_asked|date("m/d/Y")}}#}
 				</th>
 			</tr>
                         <tr>
-{#                            date from param : {{ a }}#}
+{#                            date from param : {{ date_asked }}#}
                         </tr>
 			<tr>
 				<th width="12%">Sunday</th>
@@ -39,10 +34,15 @@
 		</thead>
 		<tbody>
 			<tr>
-			{% set daysInMonth = "now"|date('t') %}
-			{% set startDow = "now"|date('F 1\\s\\t Y')|date('w') %}
+{#			{% set daysInMonth = date_asked |date('t') %}#}
+{#                        {{date_asked}} => Number of days in month#}
+{#                        {% set month_asked = {{ month }} %}#}
+{#                        {% set daysInMonth = month_asked|date('t') %}#}
+			{% set startDow = date_asked |date('F 1\\s\\t Y')|date('w') %}
+                        date demandée {{date_asked}} et j debut {{date_asked |date('F 1\\s\\t Y')}}
 			{% set dow = startDow %}
-			{% for day in range(1,daysInMonth) %}
+			1 jour du mois {{startDow}}
+                        {% for day in range(1,nb_days) %}
 				{% if loop.first and startDow != 0 %}
 					<td colspan="{{ startDow }}"></td>
 				{% endif %}
@@ -69,4 +69,4 @@
 			</tr>
 		</tbody>
 </table>
-                        {% endblock %}
+{% endblock %}
