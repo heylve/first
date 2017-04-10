@@ -5,7 +5,15 @@
  */
 alert ("coucou");
 
+//jquery modal
 
+    $( document ).ready(function() {
+        console.log( "document loaded" );
+        $('#btnTest').click(function () {
+              $('#myModal').modal('show');
+    });
+ 
+         });
 function draw() {
  var canvas = document.getElementById("dessin");
  var ctx = canvas.getContext("2d");
@@ -68,10 +76,10 @@ function call_draw() {
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
 */
-
-var context = document.getElementById('canvas').getContext('2d'),
+ $( document ).ready(function() {
+var context = document.getElementById('canvas_luc').getContext('2d'),
     selectElement = document.getElementById('compositingSelect');
-
+    });
 // Functions.....................................................
 
 function drawText() {
@@ -125,5 +133,4 @@ context.font = '128pt Comic-sans';
 drawText();
 
   
-
 

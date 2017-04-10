@@ -4,9 +4,9 @@
 {% block body %}
 
  <div class="row">         
-    <div class="col-md-3"><a href="/lucky/calendar"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>  PREVIOUS MONTH </a></div>
-    <div class="col-md-3"><a href="/">Current month <span class="glyphicon glyphicon-home" aria-hidden="true"></span> </a></div>
-    <div class="col-md-3"><a href="/lucky/number"> NEXT MONTH <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></div>
+    <div class="col-md-3"><a href="/lucky/calendar/{{month-1}}/{{year}}"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>  PREVIOUS MONTH </a></div>
+    <div class="col-md-3"><a href="/lucky/calendar">Current month <span class="glyphicon glyphicon-home" aria-hidden="true"></span> </a></div>
+    <div class="col-md-3"><a href="/lucky/calendar/{{month+1}}/{{year}}"> NEXT MONTH <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></div>
  </div>
            
 
@@ -38,10 +38,12 @@
 {#                        {{date_asked}} => Number of days in month#}
 {#                        {% set month_asked = {{ month }} %}#}
 {#                        {% set daysInMonth = month_asked|date('t') %}#}
-			{% set startDow = date_asked |date('F 1\\s\\t Y')|date('w') %}
-                        date demandée {{date_asked}} et j debut {{date_asked |date('F 1\\s\\t Y')}}
+			{% set startDow = date_asked['first_day'] | date('w') %}
+{#                        Nb jour {{date('D', date_asked)}}#}
+{#                        date demandée {{date_asked}} et jour debut {{date_asked |date('F 1\\s\\t Y')}}#}
+                          premier jour du {{date_asked['first_day']}} mois date demandé {{date_asked['date_asked']}}
 			{% set dow = startDow %}
-			1 jour du mois {{startDow}}
+			
                         {% for day in range(1,nb_days) %}
 				{% if loop.first and startDow != 0 %}
 					<td colspan="{{ startDow }}"></td>

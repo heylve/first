@@ -57,18 +57,51 @@ public function requestAction(Request $request, $firstName="lucie", $lastName="t
 
 }
 /**
-     * @Route("/lucky/calendar/{month}/{year}", name="calendar")
+     * @Route("/lucky/calendar/{month}/{year}", name="calendar",
+     *  defaults={"year": null,"month":null,"day":1})
      */
-public function calendarAction($month=3, $year=2017,$day=1)
+public function calendarAction($month, $year,$day)
 {
-    
-
+   
+  if ($month == null  or $year == null)
+  {
+   $now = new \DateTime('now');
+   $month = $now->format('m');
+   $year = $now->format('Y');
+   $day = 1;    
+  }
+  else{
+  
+    if ($month > 12) 
+    {
+        $month=1;
+        $year=$year+1;
+    }
+    if ($month ==0)
+    {
+        $month=12;
+        $year=$year-1;
+    }
+  }
+   
 $d1=strtotime("{$month} {$year}");
 //   $c=date('d/m/Y',$c);
-$date="1/{$month}/{$year}";
+$date="{$year}-{$month}-1";
+$timestamp = strtotime($date);
+$first_day = date('D', $timestamp);
+$first_day_2 = date('w', $timestamp);
+$first_day_3 = date('l', $timestamp);
+
+$date_params= ['date_asked' => $date, 'first_day' => $first_day ];
+
+
+//return new Response(
+//            '<html><body>'.var_dump($date).'Nom court: '.var_dump($first_day).var_dump($first_day_2).var_dump($first_day_3).'</body></html>'
+//);
+//var_dump($day);
 $nb_days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
      return $this->render('AppBundle:lucky:calendar.html.twig', array(
-            'month' => $month,'year' => $year,'nb_days' => $nb_days,'date_asked' => $date));
+            'month' => $month,'year' => $year,'nb_days' => $nb_days,'date_asked' => $date_params));
     
 
      //   $d=strtotime("10:30pm April 15 2014");

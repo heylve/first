@@ -16,13 +16,13 @@ class CrawlerController extends Controller
     public function IndexAction()
     {
         $client = new Client();
-        $crawler = $client->request('GET', 'http://www.ouest-france.fr/');
+        $crawler = $client->request('GET', 'http://www.phrack.org');
         
 //        $crawler = $client->click($crawler->selectLink('Sign in')->link());
 //        $form = $crawler->selectButton('Sign in')->form();
 //        $crawler = $client->submit($form, array('login' => 'heylve', 'password' => 'Bepicolombopgh31'));
         $arr_node =[];
-        $node_nb = $crawler->filter('body > h2 .authors');
+        $node_nb = $crawler->filter('body > h2 ');
 //        $node_nb=$crawler->text();
         $crawler->filter('#footer')->each(function ($node) {
 //         $arr_node[$node]=$node->text();
