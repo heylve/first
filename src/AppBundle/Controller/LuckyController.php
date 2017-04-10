@@ -39,6 +39,7 @@ class LuckyController extends Controller
 //         // returns '{"username":"jane.doe"}' and sets the proper Content-Type header
 //        return $this->json(array('username' => 'jane.doe'));
 //      return $this->redirect("http://www.google.fr");
+        $number =10;
         return $this->render('lucky/number.html.twig', array(
             'number' => $number,
         )); 

@@ -26,7 +26,9 @@
         "components/jquery": "3.1.1",
         "symfony/finder": "^3.2",
         "geerlingguy/ping": "^1.1",
-        "twbs/bootstrap": "^3.3"
+        "twbs/bootstrap": "^3.3",
+        "symfony/dom-crawler": "^3.2",
+        "fabpot/goutte": "^3.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

@@ -1,0 +1,13 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Crawler:Index{% endblock %}
+
+{% block body %}
+<h1>Welcome to the Crawler:Index page</h1>
+{% if nodes is empty %}
+   VIDE 
+  {%endif %}
+{% for n in nodes%}
+    <li>n</li>
+    {% endfor %}
+{% endblock %}
