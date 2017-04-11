@@ -9,7 +9,7 @@ alert ("coucou");
 
     $( document ).ready(function() {
         console.log( "document loaded" );
-        $('#btnTest').click(function () {
+        $('#btn_mood').click(function () {
               $('#myModal').modal('show');
     });
  
