@@ -34,10 +34,7 @@
 		</thead>
 		<tbody>
 			<tr>
-{#			{% set daysInMonth = date_asked |date('t') %}#}
-{#                        {{date_asked}} => Number of days in month#}
-{#                        {% set month_asked = {{ month }} %}#}
-{#                        {% set daysInMonth = month_asked|date('t') %}#}
+
 			{% set startDow = date_asked['first_day'] | date('w') %}
 {#                        Nb jour {{date('D', date_asked)}}#}
 {#                        date demandée {{date_asked}} et jour debut {{date_asked |date('F 1\\s\\t Y')}}#}
@@ -50,7 +47,7 @@
 				{% endif %}
 				<td>
 					<div>
-						<div>{{ day }}</div>
+{#						<div>{{ day }}</div>#}
 						<div>
 						 {# day content here #}
                                                   {{ include('AppBundle:lucky:day.html.twig', { 'day': day }) }}
@@ -73,7 +70,7 @@
 </table>
 <div class="container">
      {# <button id="btnTest" class="btn btn-default">Show Modal</button>#}
-      <div id="myModal" role="dialog" class="modal fade">
+      <div id="myModal" role="dialog" class="modal fade" data-id="">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -82,9 +79,9 @@
             </div>
             <div class="modal-body">
               <p>Pick up your smiley !</p>
-              <img src="{{ absolute_url(asset('images/Emotes-face-angel-icon.png')) }}" alt="heureux !!" id="choose_smiley_1" /> 
-              <img src="{{ absolute_url(asset('images/Smiley-12-icon.png')) }}" alt="heureux !!" id="choose_smiley_2" /> 
-              <img src="{{ absolute_url(asset('images/index.jpg')) }}" alt="heureux !!" id="choose_smiley_3"/> 
+              <img src="{{ absolute_url(asset('images/smiley_1.png')) }}" alt="heureux !!" id="choose_smiley_1" /> 
+              <img src="{{ absolute_url(asset('images/smiley_2.png')) }}" alt="heureux !!" id="choose_smiley_2" /> 
+              <img src="{{ absolute_url(asset('images/smiley_3.png')) }}" alt="heureux !!" id="choose_smiley_3"/> 
             </div>
             <div class="modal-footer">
               <button type="button" data-dismiss="modal" class="btn btn-default" id="btn_close">Close</button>

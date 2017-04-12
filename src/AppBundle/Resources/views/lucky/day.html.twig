@@ -1,15 +1,15 @@
 {# empty Twig template #}
 <h2>{{ day }}</h2>
-<h3 class="byline">by {{ day }}</h3>
+
  
 <p >
-    {{ day }}
+   
     <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
 {#    <img src="<?php echo $view['assets']->getUrl('images/Emotes-face-angel-icon.png') ?>" />#}
     {% if day % 2 ==0 %}
-    <img src="{{ absolute_url(asset('images/Emotes-face-angel-icon.png')) }}" alt="heureux !!"  id="smiley_{{day}}"/> 
+    <img src="{{ absolute_url(asset('images/smiley_2.png')) }}" alt="heureux !!"  id="smiley_{{day}}"/> 
     {% else %}
-        <img src="{{ absolute_url(asset('images/Smiley-12-icon.png')) }}" alt="heureux !!" id="smiley_{{day}}"/> 
+        <img src="{{ absolute_url(asset('images/smiley_1.png')) }}" alt="heureux !!" id="smiley_{{day}}"/> 
     {% endif %}
 </p>
 <button id="btn_mood_{{day}}" class="btn btn-primary">My mood</button>
