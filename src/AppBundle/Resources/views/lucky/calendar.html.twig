@@ -2,73 +2,77 @@
 {% block title %}My cool app{% endblock %}
 
 {% block body %}
+<div class=container">
+ <div class="nav navbar-nav col-xs-2">         
+    <a href="/lucky/calendar/{{month-1}}/{{year}}">  PREVIOUS MONTH </a></div>
+    <a href="/lucky/calendar">Current month <span class="glyphicon glyphicon-home" aria-hidden="true"></span> </a></div>
+    <a href="/lucky/calendar/{{month+1}}/{{year}}"> NEXT MONTH <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></div>
+    <button id="btn_save" class="btn btn-warning">Save changes</button>
+ </div>   
 
- <div class="row">         
-    <div class="col-md-3"><a href="/lucky/calendar/{{month-1}}/{{year}}"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>  PREVIOUS MONTH </a></div>
-    <div class="col-md-3"><a href="/lucky/calendar">Current month <span class="glyphicon glyphicon-home" aria-hidden="true"></span> </a></div>
-    <div class="col-md-3"><a href="/lucky/calendar/{{month+1}}/{{year}}"> NEXT MONTH <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></div>
- </div>
            
+    <div class=col-xs-10">
+        <table class="table table-striped table-condensed ">
+                        <thead>
+                                <tr>
+                                        <th colspan="7" class="center">
+        {#                                    Mois {{ month }}- Annee{{ year}} - Day {{day}}#}
 
-<table class="table table-striped">
-		<thead>
-			<tr>
-				<th colspan="7" class="center">
-{#                                    Mois {{ month }}- Annee{{ year}} - Day {{day}}#}
-                                    
-{#                                    {{date_asked|date("m/d/Y")}}#}
-				</th>
-			</tr>
-                        <tr>
-{#                            date from param : {{ date_asked }}#}
-                        </tr>
-			<tr>
-				<th width="12%">Sunday</th>
-				<th width="15%">Monday</th>
-				<th width="15%">Tuesday</th>
-				<th width="16%">Wednesday</th>
-				<th width="15%">Thursday</th>
-				<th width="15%">Friday</th>
-				<th width="12%">Saturday</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
+        {#                                    {{date_asked|date("m/d/Y")}}#}
+                                        </th>
+                                </tr>
+                                <tr>
+        {#                            date from param : {{ date_asked }}#}
+                                </tr>
+                                <tr>
+                                        <th width="12%">Sunday</th>
+                                        <th width="15%">Monday</th>
+                                        <th width="15%">Tuesday</th>
+                                        <th width="16%">Wednesday</th>
+                                        <th width="15%">Thursday</th>
+                                        <th width="15%">Friday</th>
+                                        <th width="12%">Saturday</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                                <tr>
 
-			{% set startDow = date_asked['first_day'] | date('w') %}
-{#                        Nb jour {{date('D', date_asked)}}#}
-{#                        date demandée {{date_asked}} et jour debut {{date_asked |date('F 1\\s\\t Y')}}#}
-                          premier jour du {{date_asked['first_day']}} mois date demandé {{date_asked['date_asked']}}
-			{% set dow = startDow %}
-			
-                        {% for day in range(1,nb_days) %}
-				{% if loop.first and startDow != 0 %}
-					<td colspan="{{ startDow }}"></td>
-				{% endif %}
-				<td>
-					<div>
-{#						<div>{{ day }}</div>#}
-						<div>
-						 {# day content here #}
-                                                  {{ include('AppBundle:lucky:day.html.twig', { 'day': day }) }}
-						</div>
-					</div>
-				</td>
-				{% if loop.last and dow != 6 %}
-					<td colspan="{{ 6 - dow }}">&nbsp;</td>
-				{% endif %}
-				{% if dow == 6 %}
-					{% set dow = 0 %}
-				</tr>
-				<tr>
-				{% else %}
-					{% set dow = dow + 1 %}
-				{% endif %}
-			{% endfor %}
-			</tr>
-		</tbody>
-</table>
-<div class="container">
+                                {% set startDow = date_asked['first_day'] | date('w') %}
+        {#                        Nb jour {{date('D', date_asked)}}#}
+        {#                        date demandée {{date_asked}} et jour debut {{date_asked |date('F 1\\s\\t Y')}}#}
+        {#                          premier jour du {{date_asked['first_day']}} mois date demandé {{date_asked['date_asked']}}#}
+                                {% set dow = startDow %}
+
+                                {% for day in range(1,nb_days) %}
+                                        {% if loop.first and startDow != 0 %}
+                                                <td colspan="{{ startDow }}"></td>
+                                        {% endif %}
+                                        <td>
+                                                <div>
+        {#						<div>{{ day }}</div>#}
+                                                        <div>
+                                                         {# day content here #}
+                                                          {{ include('AppBundle:lucky:day.html.twig', { 'day': day }) }}
+                                                        </div>
+                                                </div>
+                                        </td>
+                                        {% if loop.last and dow != 6 %}
+                                                <td colspan="{{ 6 - dow }}">&nbsp;</td>
+                                        {% endif %}
+                                        {% if dow == 6 %}
+                                                {% set dow = 0 %}
+                                        </tr>
+                                        <tr>
+                                        {% else %}
+                                                {% set dow = dow + 1 %}
+                                        {% endif %}
+                                {% endfor %}
+                                </tr>
+                        </tbody>
+        </table>
+    </div>
+</div>
+<div class="window">
      {# <button id="btnTest" class="btn btn-default">Show Modal</button>#}
       <div id="myModal" role="dialog" class="modal fade" data-id="">
         <div class="modal-dialog">
@@ -82,6 +86,7 @@
               <img src="{{ absolute_url(asset('images/smiley_1.png')) }}" alt="heureux !!" id="choose_smiley_1" /> 
               <img src="{{ absolute_url(asset('images/smiley_2.png')) }}" alt="heureux !!" id="choose_smiley_2" /> 
               <img src="{{ absolute_url(asset('images/smiley_3.png')) }}" alt="heureux !!" id="choose_smiley_3"/> 
+              <img src="{{ absolute_url(asset('images/smiley_4.png')) }}" alt="heureux !!" id="choose_smiley_4"/> 
             </div>
             <div class="modal-footer">
               <button type="button" data-dismiss="modal" class="btn btn-default" id="btn_close">Close</button>
