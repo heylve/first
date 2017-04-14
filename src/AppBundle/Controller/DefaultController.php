@@ -50,7 +50,7 @@ class DefaultController extends Controller
         $task->setDueDate(new \DateTime('tomorrow'));
 
         $form = $this->createForm(TaskType::class, $task, array(
-    'action' => $this->generateUrl('lucky'),
+//    'action' => $this->generateUrl('homepage'),
     'method' => 'POST',));
         
          $form->handleRequest($request);
@@ -66,7 +66,7 @@ class DefaultController extends Controller
         // $em->persist($task);
         // $em->flush();
 
-        return $this->redirectToRoute('task_success');
+        return $this->redirectToRoute('homepage');
     }
         
         

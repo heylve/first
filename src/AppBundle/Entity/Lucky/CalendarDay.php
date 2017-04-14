@@ -29,9 +29,9 @@ class CalendarDay
     private $user;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="day", type="datetime")
+     * @ORM\Column(name="day", type="date")
      */
     private $day;
 
@@ -80,7 +80,7 @@ class CalendarDay
     /**
      * Set day
      *
-     * @param \DateTime $day
+     * @param \Date $day
      *
      * @return CalendarDay
      */
@@ -94,7 +94,7 @@ class CalendarDay
     /**
      * Get day
      *
-     * @return \DateTime
+     * @return \Date
      */
     public function getDay()
     {

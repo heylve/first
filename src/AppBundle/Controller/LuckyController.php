@@ -8,7 +8,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use AppBundle\Entity\Lucky\CalendarDay;
+use AppBundle\Form\CalendarDayType;
+
 
 class LuckyController extends Controller
 
@@ -120,24 +124,73 @@ $nb_days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
      */
 public function save_calendarAction()
 {
-     $product = new Product();
-    $product->setName('Keyboard');
-    $product->setPrice(19.99);
-    $product->setDescription('Ergonomic and stylish!');
-
+     $cal = new CalendarDay();
+    $cal->setUser(1);
+//    $date = Date('Y-m-d');
+//    $date = date('Y-m-d', strtotime($date));
+    $date =  new \DateTime("now");
+    $cal->setDay($date );
+    $cal->setMood(1);
+    $datetime = date_create('2017-04-25')->format('Y-m-d H:i:s');
+    $datetime = date_create('2017-04-28')->format('Y-m-d' );
     $em = $this->getDoctrine()->getManager();
 
     // tells Doctrine you want to (eventually) save the Product (no queries yet)
-    $em->persist($product);
+    $em->persist($cal);
 
     // actually executes the queries (i.e. the INSERT query)
     $em->flush();
-
-    return new Response('Saved new product with id '.$product->getId());
+      return new Response('Saved new cal with id '.$datetime);
+//    return new Response('Saved new cal with id '.$cal->getId());
     
 }
+   /**
+     * @Route("/lucky/createday/", name="createday")
+     *  
+     */ 
+   public function createdayAction(Request $request)
+    {
+        // create a task and give it some dummy data for this example
+        $cal = new CalendarDay();
+        $cal->setUser(1);;
+        $date =  new \DateTime("now");
+        $cal->setDay($date );
+        $cal->setMood(1);
 
+//        $form = $this->createFormBuilder($cal)
+//            ->add('user', IntegerType::class)
+//            ->add('day', DateType::class)
+//            ->add('mood', IntegerType::class)    
+//            ->add('save', SubmitType::class, array('label' => 'Create Day'))
+//            ->getForm();
+        $form = $this->createForm(CalendarDayType::class, $cal);
+
+        
+        $form->handleRequest($request);
+//        if ($form->isSubmitted() && !($form->isValid()) ) {
+//            return new Response('Data non valid in the form ');
+//        }
+         
+        if ($form->isSubmitted() && $form->isValid()) {
+             // $form->getData() holds the submitted values
+        // but, the original `$task` variable has also been updated
+        $cal = $form->getData();
+
+        // ... perform some action, such as saving the task to the database
+        // for example, if Task is a Doctrine entity, save it!
+         $em = $this->getDoctrine()->getManager();
+         $em->persist($cal);
+         $em->flush();
+
+        return $this->redirectToRoute('calendar');
+        }
+        
+        return $this->render('AppBundle:lucky:createday.html.twig', array('form' => $form->createView()));
     
+//        return $this->render('lukcy/createday.html.twig', array(
+//            'form' => $form->createView(),
+//        ));
+    }  
     /**
      * @Route("/lucky/number/{max}", name="lucky")
      */
@@ -167,6 +220,10 @@ public function save_calendarAction()
 		  ->add('dateentree', DateType::class)
 		  ->add('enregistrer',SubmitType::class,array('label' => 'Enregistrer agent'));
     $formResult = $formulaireBuilder->getForm();
+   
+    if ($formResult->isSubmitted() && $formResult->isValid()) {
+         return $this->redirectToRoute('homepage');
+     }
     
     return $this->render('AppBundle:lucky:formulaire.html.twig',array('formulaire_agent' => $formResult->createView()));
 
