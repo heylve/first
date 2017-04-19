@@ -1,10 +1,17 @@
 {% extends 'base.html.twig' %}
-{% block title %}My cool app{% endblock %}
 
+{% block title %}My cool app{% endblock %}
+{# {% block sidebar %}
+{##}
+{# {% endblock %}#}
 {% block body %}
+    
 <div class="container">
     <div class="row">
-        <div class="nav navbar-left navbar-nav col-xs-2"> 
+         <link rel="stylesheet"
+            href="{{ asset('css/calendar.css') }}">
+{#         style="position: sticky;top: 15px;left: 15px;"#}
+        <div class="menucalendar nav navbar-left navbar-nav col-xs-2 " > 
             <ul>
             <a href="/lucky/calendar/{{month-1}}/{{year}}">  PREVIOUS MONTH <span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>
             <a href="/lucky/calendar">Current month <span class="glyphicon glyphicon-home" aria-hidden="true"></span> </a>
