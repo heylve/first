@@ -7,9 +7,9 @@
     <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
 {#    <img src="<?php echo $view['assets']->getUrl('images/Emotes-face-angel-icon.png') ?>" />#}
     {% if day % 2 ==0 %}
-    <img src="{{ absolute_url(asset('images/smiley_2.png')) }}" alt="heureux !!"  id="smiley_{{day}}"/> 
+    <img src="{{ absolute_url(asset('images/smiley_2.png')) }}" alt="heureux !!"  name="smiley_{{day}}"  id="smiley_{{day}}"/> 
     {% else %}
-        <img src="{{ absolute_url(asset('images/smiley_1.png')) }}" alt="heureux !!" id="smiley_{{day}}"/> 
+        <img src="{{ absolute_url(asset('images/smiley_1.png')) }}" alt="heureux !!" name="smiley_{{day}}" id="smiley_{{day}}"/> 
     {% endif %}
 </p>
 {#<button id="btn_mood_{{day}}" class="btn btn-primary">My mood</button>#}

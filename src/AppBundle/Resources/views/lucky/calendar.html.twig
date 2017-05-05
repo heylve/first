@@ -5,7 +5,7 @@
 {##}
 {# {% endblock %}#}
 {% block body %}
-    
+    {{ form_start(form) }}
 <div class="container">
     <div class="row">
          <link rel="stylesheet"
@@ -84,6 +84,7 @@
         </div>
     </div>
 </div>
+{{ form_end(form) }}
 <div class="window">
      {# <button id="btnTest" class="btn btn-default">Show Modal</button>#}
       <div id="myModal" role="dialog" class="modal fade" data-id="">

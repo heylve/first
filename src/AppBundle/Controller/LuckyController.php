@@ -64,7 +64,7 @@ public function requestAction(Request $request, $firstName="lucie", $lastName="t
      * @Route("/lucky/calendar/{month}/{year}", name="calendar",
      *  defaults={"year": null,"month":null,"day":1})
      */
-public function calendarAction($month, $year,$day)
+public function calendarAction(Request $request,$month, $year,$day)
 {
    
   if ($month == null  or $year == null)
@@ -103,8 +103,20 @@ $date_params= ['date_asked' => $date, 'first_day' => $first_day ];
 //            '<html><body>'.var_dump($date).'Nom court: '.var_dump($first_day).var_dump($first_day_2).var_dump($first_day_3).'</body></html>'
 //);
 //var_dump($day);
+
+
+ $form =  $this->createFormBuilder()
+         ->add('save', SubmitType::class, array('label' => 'Save changes '))
+         ->getForm();
+ 
+ $form->handleRequest($request);
+ if ($form->isSubmitted() && $form->isValid()) {
+      return $this->redirectToRoute('index');
+ }
+
 $nb_days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
      return $this->render('AppBundle:lucky:calendar.html.twig', array(
+            'form' => $form->createView(),
             'month' => $month,'year' => $year,'nb_days' => $nb_days,'date_asked' => $date_params));
     
 
