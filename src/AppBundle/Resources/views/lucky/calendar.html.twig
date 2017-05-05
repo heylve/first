@@ -53,7 +53,7 @@
             {#                        date demandée {{date_asked}} et jour debut {{date_asked |date('F 1\\s\\t Y')}}#}
             {#                          premier jour du {{date_asked['first_day']}} mois date demandé {{date_asked['date_asked']}}#}
                                     {% set dow = startDow %}
-                                     <input type=texfield" value="toto" name="first_tf">   
+{#                                     <input type=texfield" value="toto" name="first_tf">   #}
                                     {% for day in range(1,nb_days) %}
                                             {% if loop.first and startDow != 0 %}
                                                     <td colspan="{{ startDow }}"></td>

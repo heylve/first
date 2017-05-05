@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use AppBundle\Entity\Lucky\CalendarDay;
 use AppBundle\Form\CalendarDayType;
+use AppBundle\Utils\CalendarBdActions;
 
 
 class LuckyController extends Controller
@@ -113,12 +114,10 @@ $date_params= ['date_asked' => $date, 'first_day' => $first_day ];
  if ($form->isSubmitted() && $form->isValid()) {
      
        $data1= $form->getData();
-      
+       $data= $request->request;
+       $this->get('app.db_calendar')->upsert_to_db($data);    
 
-        $data= $request->request;
-
-
-      return $this->redirectToRoute('index',array('data' => $data));
+       return $this->redirectToRoute('index',array('data' => $data));
  }
 
 $nb_days = cal_days_in_month(CAL_GREGORIAN, $month, $year);

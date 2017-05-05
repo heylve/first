@@ -10,3 +10,5 @@ services:
     app.mailer:
             class:        AppBundle\Mailer
             arguments:    ['%app.mailer.transport%']
+    app.db_calendar:
+            class:        AppBundle\Utils\CalendarBdActions
