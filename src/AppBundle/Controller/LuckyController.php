@@ -111,7 +111,14 @@ $date_params= ['date_asked' => $date, 'first_day' => $first_day ];
  
  $form->handleRequest($request);
  if ($form->isSubmitted() && $form->isValid()) {
-      return $this->redirectToRoute('index');
+     
+       $data1= $form->getData();
+      
+
+        $data= $request->request;
+
+
+      return $this->redirectToRoute('index',array('data' => $data));
  }
 
 $nb_days = cal_days_in_month(CAL_GREGORIAN, $month, $year);

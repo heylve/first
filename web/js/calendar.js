@@ -21,6 +21,7 @@
 //    alert ("smiley_chosen".smiley_chosen);
 //    alert ("day_clicked"+day_clicked);
     $("#smiley_"+day_clicked).attr('src','/images/smiley_'+smiley_chosen+'.png');
+    $("#value_smiley_"+day_clicked).attr('value',smiley_chosen);
      $('#myModal').modal('hide');
      
 });  
