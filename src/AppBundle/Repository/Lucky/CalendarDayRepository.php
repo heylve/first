@@ -10,4 +10,34 @@ namespace AppBundle\Repository\Lucky;
  */
 class CalendarDayRepository extends \Doctrine\ORM\EntityRepository
 {
+    
+    public function upsert_to_db($data)
+    {
+        $var=$data;
+        foreach ($data as $key => $value){
+            $day= $key;
+            $mood = $value;
+            $this->create_day($day,$mood);
+            
+            
+            
+    
+    }
+
+    }//end upsert
+    
+    public function create_day($date2,$mood)
+    {
+        $cal_day = new CalendarDay();
+        $cal_day->setUser(1);
+        $date =  new \DateTime("now");
+        $cal_day->setDay($date);
+        $cal_day->setMood(1);
+      
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($day);
+        $em->flush();
+    }
+    
+    
 }

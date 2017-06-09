@@ -12,8 +12,8 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use AppBundle\Entity\Lucky\CalendarDay;
 use AppBundle\Form\CalendarDayType;
-use AppBundle\Utils\CalendarBdActions;
-
+//use AppBundle\Utils\CalendarBdActions;
+use AppBundle\Repository\Lucky;
 
 class LuckyController extends Controller
 
@@ -115,6 +115,8 @@ $date_params= ['date_asked' => $date, 'first_day' => $first_day ];
      
        $data1= $form->getData();
        $data= $request->request;
+       //app.db_calendar:  in services.yml
+       //class:        AppBundle\Utils\CalendarBdActions
        $this->get('app.db_calendar')->upsert_to_db($data);    
 
        return $this->redirectToRoute('index',array('data' => $data));
