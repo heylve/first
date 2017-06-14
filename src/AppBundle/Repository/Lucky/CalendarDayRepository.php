@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository\Lucky;
 
+use AppBundle\Entity\Lucky\CalendarDay;
+
 /**
  * CalendarDayRepository
  *
@@ -34,8 +36,8 @@ class CalendarDayRepository extends \Doctrine\ORM\EntityRepository
         $cal_day->setDay($date);
         $cal_day->setMood(1);
       
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($day);
+        $em = $this->getEntityManager();
+        $em->persist($cal_day);
         $em->flush();
     }
     

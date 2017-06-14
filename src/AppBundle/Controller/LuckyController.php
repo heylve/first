@@ -14,6 +14,7 @@ use AppBundle\Entity\Lucky\CalendarDay;
 use AppBundle\Form\CalendarDayType;
 //use AppBundle\Utils\CalendarBdActions;
 use AppBundle\Repository\Lucky;
+use Doctrine\ORM\EntityManagerInterface;
 
 class LuckyController extends Controller
 
@@ -117,8 +118,13 @@ $date_params= ['date_asked' => $date, 'first_day' => $first_day ];
        $data= $request->request;
        //app.db_calendar:  in services.yml
        //class:        AppBundle\Utils\CalendarBdActions
-       $this->get('app.db_calendar')->upsert_to_db($data);    
-
+       //old code to call from a library in utils folder
+       //$this->get('app.db_calendar')->upsert_to_db($data); 
+            //  $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
+       // $em->getRepository('AppBundle:Lucky:CalendarDay')->upsert_to_db($data);
+        $em->getRepository('AppBundle\Entity\Lucky\CalendarDay')->upsert_to_db($data);
+       //$this->upsert_to_db($data);
        return $this->redirectToRoute('index',array('data' => $data));
  }
 
