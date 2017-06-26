@@ -12,5 +12,10 @@ services:
             arguments:    ['%app.mailer.transport%']
     app.db_calendar:
             class:        AppBundle\Utils\CalendarBdActions
-    app.beta_htlml:
-            class:        AppBundle\Beta\BetaHTML  
+    app.beta.html:
+            class:        AppBundle\Beta\BetaHtml  
+    app.beta.listener:
+            class:        AppBundle\Beta\BetaListener
+            arguments:    ['@app.beta.html', "2013-10-20"]
+            tags:
+                    - { name: kernel.event_listener, event: kernel.response, method: processBeta }

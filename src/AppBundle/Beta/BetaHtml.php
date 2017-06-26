@@ -11,7 +11,7 @@ namespace AppBundle\Beta;
 use Symfony\Component\HttpFoundation\Response;
 
 
-class BetaHTML
+class BetaHtml
 
 {
 
