@@ -1,3 +1,12 @@
+
+php unit does not work unless we use 
+
+/vendor/bin/phpunit to launch the tests
+
+https://github.com/symfony/symfony/issues/19532
+
+
+
 Symfony Standard Edition
 ========================
 
