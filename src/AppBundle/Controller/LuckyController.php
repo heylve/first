@@ -194,7 +194,7 @@ public function save_calendarAction()
         
         $form->handleRequest($request);
 //        if ($form->isSubmitted() && !($form->isValid()) ) {
-//            return new Response('Data non valid in the form ');
+//            return new Response('Data non valid cin the form ');
 //        }
          
         if ($form->isSubmitted() && $form->isValid()) {

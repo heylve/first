@@ -39,6 +39,45 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }
+    
+    /**
+     * @Route("/sendEmail", name="sendEmailGmail")
+     */
+    public function sendEmailAction($name="lucie", \Swift_Mailer $mailer)
+{
+    $message = (new \Swift_Message('Hello Email'))
+        ->setFrom('send@example.com')
+        ->setTo('luc_vallet@hotmail.com')
+        ->setBody(
+            $this->renderView(
+                // app/Resources/views/Emails/registration.html.twig
+                'Emails/registration.html.twig',
+                array('name' => $name)
+            ),
+            'text/html'
+        )
+        /*
+         * If you also want to include a plaintext version of the message
+        ->addPart(
+            $this->renderView(
+                'Emails/registration.txt.twig',
+                array('name' => $name)
+            ),
+            'text/plain'
+        )
+        */
+    ;
+
+    $mailer->send($message);
+
+    // or, you can also fetch the mailer service this way
+    // $this->get('mailer')->send($message);
+
+    //return $this->render(...);
+    return $this->redirectToRoute('homepage');
+}
+    
+    
     /**
      * @Route("/new", name="new_task")
      */
@@ -97,7 +136,7 @@ class DefaultController extends Controller
         $em->flush();
 
         return new Response(
-            'Saved new product with id: '.$product->getId()
+            'Saved new product with id : '.$product->getId()
             .' and new category with id: '.$category->getId()
         );
     }

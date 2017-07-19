@@ -28,11 +28,14 @@
         "geerlingguy/ping": "^1.1",
         "twbs/bootstrap": "^3.3",
         "symfony/dom-crawler": "^3.2",
-        "fabpot/goutte": "^3.2"
+        "fabpot/goutte": "^3.2",
+	"phpunit/phpunit": "4.8.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "^3.0"
+        "symfony/phpunit-bridge": "^3.0",
+	"phpunit/phpunit": "4.8.*",
+        "phpunit/phpunit-selenium": "^2.0"
     },
     "scripts": {
         "symfony-scripts": [
