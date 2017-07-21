@@ -4,6 +4,8 @@ namespace AppBundle\Repository\Lucky;
 
 use AppBundle\Entity\Lucky\CalendarDay;
 
+
+
 /**
  * CalendarDayRepository
  *
@@ -19,6 +21,17 @@ class CalendarDayRepository extends \Doctrine\ORM\EntityRepository
         foreach ($data as $key => $value){
             $day= $key;
             $mood = $value;
+            
+            $em = $this->getEntityManager();
+            //$em->getRepository('AppBundle\Entity\Lucky\CalendarDay')->findBy(array('day' => '2013-12-24'));
+            $em->getRepository('AppBundle:Product')
+                 ->find(1);
+            //  $product = $this->getDoctrine()
+            //     ->getRepository(Product::class)
+            //     ->find(1);
+            // $day_found = $this->getDoctrine()->getRepository('Lucky:CalendarDayRepository')
+            // ->findBy(array('day' => $day));
+            // $tenUsers = $em->getRepository('MyProject\Domain\User')->findBy(array('age' => 20), array('name' => 'ASC'), 10, 0);
             $this->create_day($day,$mood);
             
             
