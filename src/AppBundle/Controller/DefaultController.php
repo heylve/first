@@ -47,7 +47,7 @@ class DefaultController extends Controller
 {
     $message = (new \Swift_Message('Hello Email'))
         ->setFrom('send@example.com')
-        ->setTo('luc_vallet@hotmail.com')
+        ->setTo('luc.vallet@gmail.com')
         ->setBody(
             $this->renderView(
                 // app/Resources/views/Emails/registration.html.twig
@@ -222,7 +222,7 @@ public function sendemail($name)
      $message = \Swift_Message::newInstance()
         ->setSubject('Hello Email')
         ->setFrom('send@example.com')
-        ->setTo('luc_vallet@hotmail.com')
+        ->setTo('luc.vallet@gmail.com')
         ->setBody(
             $this->renderView(
                 // app/Resources/views/Emails/registration.html.twig
@@ -238,4 +238,4 @@ public function sendemail($name)
 }
 
 
-    }
+}
